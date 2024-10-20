@@ -3,7 +3,7 @@ package helper
 import (
 	"strings"
 
-	"github.com/mrbns/assetLoader/internal/config"
+	"github.com/mrbns/assetloader/internal/config"
 )
 
 func valueWithFallback(value, fallback string) string {

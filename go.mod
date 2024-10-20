@@ -1,4 +1,4 @@
-module github.com/mrbns/assetLoader
+module github.com/mrbns/assetloader
 
 go 1.21.4
 

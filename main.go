@@ -3,8 +3,8 @@ package main
 import (
 	"os"
 
-	"github.com/mrbns/assetLoader/helper"
-	"github.com/mrbns/assetLoader/internal/generator"
+	"github.com/mrbns/assetloader/helper"
+	"github.com/mrbns/assetloader/internal/generator"
 )
 
 func main() {
