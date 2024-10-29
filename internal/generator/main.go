@@ -24,7 +24,7 @@ func isValidFiles(fileName string) bool {
 	ext := filepath.Ext(fileName)
 
 	switch ext {
-	case ".png", ".jpg", ".jpeg", ".webp", ".avif", ".gif", ".mp4", ".svg":
+	case ".png", ".jpg", ".jpeg", ".webp", ".avif", ".gif", ".mp4", ".svg", ".webm", ".heif", ".ico":
 		return true
 	default:
 		return false
@@ -84,7 +84,7 @@ func GenerateAsset(directoryPath string) {
 		normalizedFileName := normalizeNameRegex.ReplaceAllString(fileNameWithoutExtension, "_")
 
 		if isValidFiles(name) {
-			_, err := file.WriteString(fmt.Sprintf("export { default as %v_%v } from \"./%v\";\n", config.AssetPrefix, strings.ToUpper(normalizedFileName), name))
+			_, err := file.WriteString(fmt.Sprintf("export { default as %v%v } from \"./%v\";\n", config.AssetPrefix, strings.ToUpper(normalizedFileName), name))
 			fmt.Println(color.CyanString("%d - %s", index+1, name))
 			helper.ErrorFatal(err, "")
 		}

@@ -28,11 +28,12 @@ func WarnErrorPanic(err error) {
 
 }
 
+// Exit with status code
 func ErrorColorizedExit(err error) {
 	if err != nil {
 		fmt.Println(color.RedString(
 			fmt.Sprintf("Error: %v", err),
 		))
-		os.Exit(0)
+		os.Exit(1)
 	}
 }
