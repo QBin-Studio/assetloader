@@ -1,19 +1,35 @@
-# assetloader - load images in Typescript project in a differrent way.
+# assetloader
 
-To install this binary globally run this command
+A tool for loading images in TypeScript projects efficiently.
 
-## installation
+## Installation
+
+To install `assetloader` globally, run:
 
 ```shell
 go install github.com/QBin-Studio/assetloader@latest
 ```
 
-## running commands
+## Usage
 
-once you have installed assetloader it you should be able to access it in terminal by typing `assetloader`. It will show a Error.
+After installation, you can access `assetloader` from your terminal:
 
-here is a full example for how you commands should be like
+```shell
+assetloader
+```
 
-```sh
+This will display usage instructions.
+
+### Example Command
+
+To generate a TypeScript index file for your images, use:
+
+```shell
 assetloader --dir=/path/to/images --prefix=IMG_PREFIX --output=index.ts
 ```
+
+- `--dir`: Path to the directory containing your images.
+- `--prefix`: Prefix to use for generated image constants.
+- `--output`: Output TypeScript file.
+
+For more details, refer to the documentation or run.

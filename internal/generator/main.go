@@ -10,8 +10,8 @@ import (
 	"strings"
 
 	"github.com/fatih/color"
-	"github.com/mrbns/assetloader/helper"
-	conf "github.com/mrbns/assetloader/internal/config"
+	"github.com/qbin-studio/assetloader/helper"
+	conf "github.com/qbin-studio/assetloader/internal/config"
 )
 
 var (

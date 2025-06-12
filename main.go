@@ -3,8 +3,8 @@ package main
 import (
 	"os"
 
-	"github.com/mrbns/assetloader/helper"
-	"github.com/mrbns/assetloader/internal/generator"
+	"github.com/qbin-studio/assetloader/helper"
+	"github.com/qbin-studio/assetloader/internal/generator"
 )
 
 func main() {
