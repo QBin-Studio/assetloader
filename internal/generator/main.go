@@ -24,11 +24,16 @@ func isValidFiles(fileName string) bool {
 	ext := filepath.Ext(fileName)
 
 	switch ext {
-	case ".png", ".jpg", ".jpeg", ".webp", ".avif", ".gif", ".mp4", ".svg", ".webm", ".heif", ".ico":
+	case ".png", ".jpg", ".jpeg", ".webp", ".avif", ".gif", ".mp4", ".svg", ".webm", ".heif", ".ico",
+		".bmp", ".tiff", ".tif", ".apng", ".jfif", ".pjpeg", ".pjp":
 		return true
 	default:
 		return false
 	}
+}
+
+func isNoInline(fileName string) bool {
+	return strings.HasPrefix(fileName, "!")
 }
 
 func getFiles() error {
@@ -81,12 +86,27 @@ func GenerateAsset(directoryPath string) {
 
 		//Normalizing Name for JS variable
 		normalizeNameRegex := regexp.MustCompile(`[-. !)(]`)
-		normalizedFileName := normalizeNameRegex.ReplaceAllString(fileNameWithoutExtension, "_")
+		underscorredFileNamd := normalizeNameRegex.ReplaceAllString(fileNameWithoutExtension, "_")
+
+		// remove morethan two underscore
+		removedMoreUnderscoreRegex := regexp.MustCompile(`_{2,}`)
+		normalizedFileName := removedMoreUnderscoreRegex.ReplaceAllString(underscorredFileNamd, "_")
 
 		if isValidFiles(name) {
-			_, err := file.WriteString(fmt.Sprintf("export { default as %v%v } from \"./%v\";\n", config.AssetPrefix, strings.ToUpper(normalizedFileName), name))
-			fmt.Println(color.CyanString("%d - %s", index+1, name))
+
+			_, err := file.WriteString(
+				fmt.Sprintf("export { default as %v%v } from \"./%v%v\";\n",
+					config.AssetPrefix,
+					strings.ToUpper(normalizedFileName),
+					name,
+					helper.Ternary(isNoInline(name), "?no-inline", "")))
+
+			// If error exist.
 			helper.ErrorFatal(err, "")
+
+			// Printing Done Files;
+			fmt.Println(color.CyanString("%d - %s", index+1, name))
+
 		}
 	}
 
