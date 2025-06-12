@@ -86,11 +86,14 @@ func GenerateAsset(directoryPath string) {
 
 		//Normalizing Name for JS variable
 		normalizeNameRegex := regexp.MustCompile(`[-. !)(]`)
-		underscorredFileNamd := normalizeNameRegex.ReplaceAllString(fileNameWithoutExtension, "_")
+		underscorredFileName := normalizeNameRegex.ReplaceAllString(fileNameWithoutExtension, "_")
+
+		// remove starting and trailing underscores
+		underscorredFileName = strings.Trim(underscorredFileName, "_")
 
 		// remove morethan two underscore
 		removedMoreUnderscoreRegex := regexp.MustCompile(`_{2,}`)
-		normalizedFileName := removedMoreUnderscoreRegex.ReplaceAllString(underscorredFileNamd, "_")
+		normalizedFileName := removedMoreUnderscoreRegex.ReplaceAllString(underscorredFileName, "_")
 
 		if isValidFiles(name) {
 
